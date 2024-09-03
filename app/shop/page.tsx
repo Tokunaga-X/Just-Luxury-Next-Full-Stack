@@ -1,8 +1,16 @@
-export default function Shop() {
+// import Goods from "../components/Goods"
+// import Info from "../components/Info"
+import React from "react"
+
+const Shop: React.FC = () => {
     return (
-        <main className="p-8 bg-white min-h-screen">
-            <h1 className="text-3xl font-bold mb-4">选购页面</h1>
-            <p className="text-gray-600">这里将展示我们的产品列表</p>
-        </main>
+        <div className="overflow-hidden mt-[35vh]">
+            <div className="w-full min-h-[43vh] mt-[5vh] mb-[5vh] flex justify-center">
+                {/* <Goods /> */}
+            </div>
+            {/* <Info /> */}
+        </div>
     )
 }
+
+export default Shop

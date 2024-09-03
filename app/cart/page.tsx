@@ -1,8 +1,67 @@
-export default function Cart() {
+import React from "react"
+// import { useSelector, useDispatch } from 'react-redux';
+// import { fetchItems, deleteItem } from '../store/actions';
+// import { RootState } from '../store/types';
+
+interface Item {
+    _id: string
+    pic: string
+    name: string
+    price: string
+}
+
+const Cart: React.FC = () => {
+    // const dispatch = useDispatch()
+    // const items = useSelector((state: RootState) => state.items)
+
+    // useEffect(() => {
+    //     dispatch(fetchItems())
+    // }, [dispatch])
+
+    // const handleDelete = (id: string) => {
+    //     dispatch(deleteItem(id))
+    // }
+
     return (
-        <main className="p-8 bg-white min-h-screen">
-            <h1 className="text-3xl font-bold mb-4">购物车</h1>
-            <p className="text-gray-600">这里将显示您的购物车内容</p>
-        </main>
+        <div className="mt-[35vh]">
+            <div className="w-full min-h-[48vh] flex flex-col my-8">
+                <div className="flex w-[80vw] mx-auto my-4">
+                    <div className="flex-1 flex justify-center items-center">
+                        Picture
+                    </div>
+                    <div className="flex-1 flex justify-center items-center">
+                        Name
+                    </div>
+                    <div className="flex-1 flex justify-center items-center">
+                        Price
+                    </div>
+                    <div className="flex-1 flex justify-center items-center">
+                        Options
+                    </div>
+                </div>
+                {/* {items.map((item: Item) => (
+                    <div
+                        key={item._id}
+                        className="mx-auto my-4 w-[80vw] h-[15vh] border-t-2 border-b-2 border-opacity-20 flex justify-center items-center"
+                    >
+                        <div className="flex-1">{item.pic}</div>
+                        <div className="flex-1 text-xl font-bold">
+                            {item.name}
+                        </div>
+                        <div className="flex-1">{item.price}</div>
+                        <div className="flex-1">
+                            <button
+                                onClick={() => handleDelete(item._id)}
+                                className="bg-red-500 text-white p-2 rounded-full hover:bg-red-600"
+                            >
+                                删除
+                            </button>
+                        </div>
+                    </div>
+                ))} */}
+            </div>
+        </div>
     )
 }
+
+export default Cart
