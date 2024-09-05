@@ -32,7 +32,7 @@ const Home: React.FC = () => {
     ]
 
     return (
-        <div className="overflow-hidden">
+        <div className="h-[calc(100vh-12vh)] overflow-hidden">
             {/* <Swiper /> */}
             <Image
                 src={house}
