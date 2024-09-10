@@ -1,67 +1,103 @@
-import React from "react"
-// import { useSelector, useDispatch } from 'react-redux';
-// import { fetchItems, deleteItem } from '../store/actions';
-// import { RootState } from '../store/types';
+import Image from "next/image"
+import { Trash2 } from "lucide-react"
+import house from "@/public/images/house.jpg"
 
-interface Item {
-    _id: string
-    pic: string
-    name: string
-    price: string
-}
+const cartItems = [
+    { id: 1, name: "Luxury Yacht", price: 5000000, quantity: 1 },
+    { id: 2, name: "Sports Car", price: 500000, quantity: 1 },
+]
 
-const Cart: React.FC = () => {
-    // const dispatch = useDispatch()
-    // const items = useSelector((state: RootState) => state.items)
-
-    // useEffect(() => {
-    //     dispatch(fetchItems())
-    // }, [dispatch])
-
-    // const handleDelete = (id: string) => {
-    //     dispatch(deleteItem(id))
-    // }
+export default function Cart() {
+    const total = cartItems.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+    )
 
     return (
-        <div className="mt-[35vh]">
-            <div className="w-full min-h-[48vh] flex flex-col my-8">
-                <div className="flex w-[80vw] mx-auto my-4">
-                    <div className="flex-1 flex justify-center items-center">
-                        Picture
-                    </div>
-                    <div className="flex-1 flex justify-center items-center">
-                        Name
-                    </div>
-                    <div className="flex-1 flex justify-center items-center">
-                        Price
-                    </div>
-                    <div className="flex-1 flex justify-center items-center">
-                        Options
-                    </div>
-                </div>
-                {/* {items.map((item: Item) => (
-                    <div
-                        key={item._id}
-                        className="mx-auto my-4 w-[80vw] h-[15vh] border-t-2 border-b-2 border-opacity-20 flex justify-center items-center"
-                    >
-                        <div className="flex-1">{item.pic}</div>
-                        <div className="flex-1 text-xl font-bold">
-                            {item.name}
+        <>
+            <Image
+                src={house}
+                alt="house"
+                className="w-[100vw] h-[20vh] object-cover"
+            />
+            <div className="container mx-auto px-6 py-8">
+                <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
+                {cartItems.length === 0 ? (
+                    <p>Your cart is empty.</p>
+                ) : (
+                    <>
+                        <div className="bg-white shadow-md rounded my-6">
+                            <table className="text-left w-full border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                            Product
+                                        </th>
+                                        <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                            Price
+                                        </th>
+                                        <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                            Quantity
+                                        </th>
+                                        <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                            Total
+                                        </th>
+                                        <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+                                            Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {cartItems.map(item => (
+                                        <tr
+                                            key={item.id}
+                                            className="hover:bg-grey-lighter"
+                                        >
+                                            <td className="py-4 px-6 border-b border-grey-light">
+                                                {item.name}
+                                            </td>
+                                            <td className="py-4 px-6 border-b border-grey-light">
+                                                ${item.price.toLocaleString()}
+                                            </td>
+                                            <td className="py-4 px-6 border-b border-grey-light">
+                                                {item.quantity}
+                                            </td>
+                                            <td className="py-4 px-6 border-b border-grey-light">
+                                                $
+                                                {(
+                                                    item.price * item.quantity
+                                                ).toLocaleString()}
+                                            </td>
+                                            <td className="py-4 px-6 border-b border-grey-light">
+                                                <button className="text-red-500 hover:text-red-600">
+                                                    <Trash2 className="h-5 w-5" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
-                        <div className="flex-1">{item.price}</div>
-                        <div className="flex-1">
-                            <button
-                                onClick={() => handleDelete(item._id)}
-                                className="bg-red-500 text-white p-2 rounded-full hover:bg-red-600"
-                            >
-                                删除
-                            </button>
+                        <div className="flex justify-end">
+                            <div className="w-1/3">
+                                <div className="border-t pt-4 mt-4">
+                                    <div className="flex justify-between">
+                                        <span className="font-bold">
+                                            Total:
+                                        </span>
+                                        <span className="font-bold">
+                                            ${total.toLocaleString()}
+                                        </span>
+                                    </div>
+                                </div>
+                                <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4 w-full hover:bg-blue-600 transition duration-150 ease-in-out">
+                                    Proceed to Checkout
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                ))} */}
+                    </>
+                )}
             </div>
-        </div>
+        </>
     )
 }
-
-export default Cart

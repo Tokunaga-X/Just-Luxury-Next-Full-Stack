@@ -32,21 +32,21 @@ const Home: React.FC = () => {
     ]
 
     return (
-        <div className="h-[calc(100vh-12vh)] overflow-hidden">
+        <div className="h-full">
             {/* <Swiper /> */}
             <Image
                 src={house}
                 alt="house"
-                className="w-full h-[90vh] object-cover"
+                className="w-full h-[50vh] object-cover"
             />
-            <div className="w-[70vw] h-[30vh] bg-[#222222] absolute top-[90%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col justify-center items-center">
+            <div className="w-[70vw] h-[12rem] bg-[#222222] absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col justify-center items-center">
                 <div className="flex flex-col md:flex-row">
                     <select
                         value={category}
                         onChange={e => setCategory(e.target.value)}
                         className="m-6 p-2 bg-white rounded md:m-3"
                     >
-                        <option value="">奢侈品类别</option>
+                        <option value="">Luxury Category</option>
                         {options1.map(option => (
                             <option key={option.value} value={option.value}>
                                 {option.label}
@@ -58,7 +58,7 @@ const Home: React.FC = () => {
                         onChange={e => setPriceRange(e.target.value)}
                         className="m-6 p-2 bg-white rounded md:m-3"
                     >
-                        <option value="">心里价位</option>
+                        <option value="">Price Range</option>
                         {options2.map(option => (
                             <option key={option.value} value={option.value}>
                                 {option.label}
@@ -69,7 +69,7 @@ const Home: React.FC = () => {
                 <div className="mt-2">
                     {/* <Link to="/shop"> */}
                     <button className="bg-transparent text-white border border-white px-4 py-2 rounded hover:bg-green-500 hover:border-transparent transition duration-250 ease-in-out">
-                        帮我查找
+                        Search for me
                     </button>
                     {/* </Link> */}
                 </div>

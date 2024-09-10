@@ -1,65 +1,128 @@
 "use client"
 
-import React, { useState } from "react"
+import Image from "next/image"
+import { Send } from "lucide-react"
+import house from "@/public/images/house.jpg"
+import { useState } from "react"
 
-const Contact: React.FC = () => {
-    const [name, setName] = useState("")
-    const [phone, setPhone] = useState("")
-    const [mail, setMail] = useState("")
-    const [message, setMessage] = useState("")
+export default function Contact() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    })
 
-    const checkInput = () => {
-        console.log(name, phone, mail, message)
-        setName("")
-        setPhone("")
-        setMail("")
-        setMessage("")
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value } = e.target
+        setFormData(prevState => ({ ...prevState, [name]: value }))
+    }
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        // Here you would typically send the form data to your server
+        console.log("Form submitted:", formData)
+        // Reset form after submission
+        setFormData({ name: "", email: "", message: "" })
     }
 
     return (
-        <div className="h-[calc(100vh-10vh)] pt-[16vh] bg-gray-900 bg-opacity-90 px-4 sm:px-6 lg:px-8 overflow-hidden">
-            <div className="max-w-3xl mx-auto bg-gray-800 shadow-md rounded-lg overflow-hidden">
-                <div className="px-6 py-8">
-                    <h2 className="text-3xl font-bold text-center text-white mb-8">
-                        联系我们
-                    </h2>
-                    <div className="space-y-6">
-                        <input
-                            className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                            placeholder="名字"
-                        />
-                        <input
-                            className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={phone}
-                            onChange={e => setPhone(e.target.value)}
-                            placeholder="电话"
-                        />
-                        <input
-                            className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={mail}
-                            onChange={e => setMail(e.target.value)}
-                            placeholder="邮箱"
-                        />
-                        <textarea
-                            className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            rows={4}
-                            value={message}
-                            onChange={e => setMessage(e.target.value)}
-                            placeholder="具体信息"
-                        />
-                        <button
-                            className="w-full bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out"
-                            onClick={checkInput}
-                        >
-                            提交你的意见
-                        </button>
+        <>
+            <Image
+                src={house}
+                alt="house"
+                className="w-[100vw] h-[20vh] object-cover"
+            />
+            <div className="container mx-auto px-6 py-8">
+                <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 className="text-xl font-semibold mb-4">
+                            Send us a message
+                        </h2>
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div>
+                                <label
+                                    htmlFor="name"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Name
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    htmlFor="email"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    htmlFor="message"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Message
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows={4}
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                ></textarea>
+                            </div>
+                            <button
+                                type="submit"
+                                className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            >
+                                <Send className="h-5 w-5 mr-2" />
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    <div>
+                        <h2 className="text-xl font-semibold mb-4">Our Team</h2>
+                        <p className="mb-4">
+                            Feel free to reach out to us for any inquiries about
+                            our luxury products.
+                        </p>
+                        <div className="space-y-2">
+                            <p>
+                                <strong>Address:</strong> 123 Luxury Lane,
+                                Opulence City, 90210
+                            </p>
+                            <p>
+                                <strong>Phone:</strong> +1 (555) 123-4567
+                            </p>
+                            <p>
+                                <strong>Email:</strong> info@just-luxury.com
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
-
-export default Contact

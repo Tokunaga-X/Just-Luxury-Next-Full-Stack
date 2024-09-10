@@ -7,7 +7,7 @@ import logo from "../../public/images/logo2.png"
 const Nav = () => {
     return (
         <div>
-            <nav className="fixed top-0 left-0 z-50 w-full h-[12vh] flex justify-between items-center bg-black bg-opacity-50 px-8">
+            <nav className="fixed top-0 left-0 z-50 w-full h-[12vh] flex justify-between items-center bg-black bg-opacity-70 px-8">
                 <Image
                     src={logo}
                     alt="logo"
@@ -16,7 +16,7 @@ const Nav = () => {
                     width={300}
                     height={300}
                 />
-                <ul className="flex justify-end space-x-12 list-none">
+                <ul className="flex justify-end space-x-[8vw]  list-none">
                     <li
                         className="text-base z-10 relative animate-fadeInDown"
                         style={{ animationDelay: "0.5s" }}
@@ -25,7 +25,7 @@ const Nav = () => {
                             href="/"
                             className="no-underline text-white tracking-wider p-2 transition duration-500 ease-in-out hover:text-gray-300"
                         >
-                            主页
+                            Home
                         </Link>
                     </li>
                     <li
@@ -33,10 +33,10 @@ const Nav = () => {
                         style={{ animationDelay: "1s" }}
                     >
                         <Link
-                            href="/shop"
+                            href="/products"
                             className="no-underline text-white tracking-wider p-2 transition duration-500 ease-in-out hover:text-gray-300"
                         >
-                            选购
+                            Shop
                         </Link>
                     </li>
                     <li
@@ -47,7 +47,7 @@ const Nav = () => {
                             href="/cart"
                             className="no-underline text-white tracking-wider p-2 transition duration-500 ease-in-out hover:text-gray-300"
                         >
-                            购物车
+                            Cart
                         </Link>
                     </li>
                     <li
@@ -58,7 +58,7 @@ const Nav = () => {
                             href="/contact"
                             className="no-underline text-white tracking-wider p-2 transition duration-500 ease-in-out hover:text-gray-300"
                         >
-                            联系
+                            Contact
                         </Link>
                     </li>
                 </ul>
